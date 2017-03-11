@@ -3,9 +3,16 @@ package net.hawkheadlines.hawkheadlines;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
+import android.webkit.WebView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
@@ -14,23 +21,35 @@ import com.rometools.rome.io.XmlReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Main extends AppCompatActivity {
 
     private final String RSS_FEED_URL = "http://hawkheadlines.net/news/feed/";
 
+    /* Called when the app starts. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Retrieve the Toolbar from the layout and set it as the Action Bar.
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        // Why I can't do this in XML? I have no idea.
+        getSupportActionBar().setTitle("");
 
-        //  Download and parse the RSS feed.
+        // Download and parse the RSS feed.
         new GetFeedTask().execute();
     }
 
-    /* Called once the feed has been downloaded and parsed. */
+    /* Once the feed has been downloaded and parsed, populate the app with the articles. */
     private void onFeedReceived(SyndFeed feed) {
-        Toast.makeText(this, feed.getTitle(), Toast.LENGTH_SHORT).show();
+        ListView v = (ListView) findViewById(R.id.articles);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, new ArrayList<String>());
+        v.setAdapter(adapter);
+        for (SyndEntry entry : feed.getEntries()) {
+            adapter.add(entry.getTitle());
+        }
     }
 
     /** Asynchronous task that downloads the RSS feed.

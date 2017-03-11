@@ -28,5 +28,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // ROME and its dependencies
-    compile group: 'rome', name: 'rome', version: '1.0'
+    compile group: 'com.rometools', name: 'rome', version: '1.7.1'
 }

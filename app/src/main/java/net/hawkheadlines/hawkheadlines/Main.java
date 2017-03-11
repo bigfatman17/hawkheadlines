@@ -45,15 +45,14 @@ public class Main extends AppCompatActivity {
     /* Once the feed has been downloaded and parsed, populate the app with the articles. */
     private void onFeedReceived(SyndFeed feed) {
         ListView v = (ListView) findViewById(R.id.articles);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, new ArrayList<String>());
+        // Create an instance of the custom adapter and set the ListView's adapter to it.
+        SyndEntryAdapter adapter = new SyndEntryAdapter(this, feed.getEntries());
         v.setAdapter(adapter);
-        for (SyndEntry entry : feed.getEntries()) {
-            adapter.add(entry.getTitle());
-        }
     }
 
-    /** Asynchronous task that downloads the RSS feed.
-     *  Android highly suggests that we do not run internet connections on the main UI thread.
+    /**
+     * Asynchronous task that downloads the RSS feed.
+     * Android highly suggests that we do not run internet connections on the main UI thread.
      */
     private class GetFeedTask extends AsyncTask<Void, Void, SyndFeed>
     {

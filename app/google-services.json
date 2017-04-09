@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1044556126832",
+    "firebase_url": "https://hawkheadlines-25b88.firebaseio.com",
+    "project_id": "hawkheadlines-25b88",
+    "storage_bucket": "hawkheadlines-25b88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044556126832:android:e7f834bb8c4fd3a7",
+        "android_client_info": {
+          "package_name": "net.hawkheadlines.hawkheadlines"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044556126832-hqc5btmfk9mqvnve3o4em6546d8mvnlf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU5pueETAwmNsBy3O2Kfzw0pJQkEY9hiE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
